@@ -84,4 +84,8 @@ public class GraphTest {
 
     @Test
     public void costFromHtoD() { assertEquals(36, h.reaches(d).getCost()); }
+
+    @Test
+    public void costFromCtoE() { assertEquals(16, h.reaches(d).getCost()); }
+
 }
