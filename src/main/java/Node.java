@@ -1,6 +1,6 @@
 import java.util.*;
 
-// Knows whom it's connected to
+// Knows whom it's connected to/understands how to traverse a graph
 public class Node {
     Map<Node, Set<Integer>> outboundNeighbors;
     ArrayList<Path> paths;

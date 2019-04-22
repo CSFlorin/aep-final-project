@@ -1,5 +1,5 @@
 // Job: single responsibility is to know cost between two nodes
-public class Path {
+public class Path implements Comparable<Path> {
     int steps;
     boolean reachable;
     int cost;
@@ -9,9 +9,13 @@ public class Path {
 //    public static final UNREACHABLE = new Path() {
 //        @Override
 //                public int compareTo(path other) {
+//            return 1;
 //
 //        }
 //    }
+//
+//    @Override
+//          public int compareTo()
 
 
     Path(boolean reachable, int steps, int cost) {
