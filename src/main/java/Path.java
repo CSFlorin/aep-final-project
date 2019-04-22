@@ -6,6 +6,13 @@ public class Path {
 //    public static final CountStrategy COUNT_COST = path -> path.cost;
 //    public static final CountStrategy COUNT_STEPS = path -> 1;
 
+//    public static final UNREACHABLE = new Path() {
+//        @Override
+//                public int compareTo(path other) {
+//
+//        }
+//    }
+
 
     Path(boolean reachable, int steps, int cost) {
         this.steps = steps;
