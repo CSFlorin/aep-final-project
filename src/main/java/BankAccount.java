@@ -17,7 +17,7 @@ public class BankAccount {
     }
 
     public boolean withdraw(int amount) {
-        assert(this.balance >= amount);
+        if (this.balance < amount) return false;
         this.balance -= amount;
         return true;
     }
