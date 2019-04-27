@@ -38,4 +38,13 @@ public class BankAccountTest {
         assertEquals(50, a.getBalance());
         assertEquals(150, b.getBalance());
     }
+
+    @Test
+    public void cannotTransfer() {
+        BankAccount a = new BankAccount(100);
+        BankAccount b = new BankAccount(100);
+        assertFalse(a.transfer(b, 101));
+        assertEquals(100, a.getBalance());
+        assertEquals(100, b.getBalance());
+    }
 }
