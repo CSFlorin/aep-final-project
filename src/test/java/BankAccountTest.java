@@ -13,7 +13,6 @@ public class BankAccountTest {
     public void canDeposit() {
         BankAccount a = new BankAccount(0f);
         assertTrue(a.deposit(10f));
-        System.out.println(a.getBalance());
         assertEquals(10f, a.getBalance(), 0f);
     }
 
@@ -52,6 +51,12 @@ public class BankAccountTest {
     @Test(expected = IllegalArgumentException.class)
     public void cannotDepositNegativeAmount() {
         BankAccount a = new BankAccount(-100f);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void cannotWithdrawNegativeAmount() {
+        BankAccount a = new BankAccount(0f);
+        a.withdraw(-100f);
     }
 
 //    @Test
