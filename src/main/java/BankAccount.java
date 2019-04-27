@@ -2,9 +2,11 @@
 public class BankAccount {
 
     private float balance;
+    private User owner;
 
-    BankAccount(float initialDeposit) {
+    BankAccount(float initialDeposit, User owner) {
         this.balance = 0f;
+        this.owner = owner;
         this.deposit(initialDeposit);
     }
 
@@ -16,21 +18,29 @@ public class BankAccount {
         return true;
     }
 
-    public float getBalance() {
-        return this.balance;
+    public float getBalance(int pin) {
+        if (this.owner.verifyPin(pin)) {
+            return this.balance;
+        }
+        throw new RuntimeException("Invalid pin");
     }
 
-    public boolean withdraw(float amount) {
+    public boolean withdraw(float amount, int pin) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount to withdraw must be at least 0");
         }
-        if (this.balance < amount) return false;
-        this.balance -= amount;
-        return true;
+        else if (!this.owner.verifyPin(pin)) {
+            throw new RuntimeException("Invalid pin");
+        }
+        else if (this.balance < amount) return false;
+        else {
+            this.balance -= amount;
+            return true;
+        }
     }
 
-    public boolean transfer(BankAccount destination, float amount) {
-        if (this.withdraw(amount)) {
+    public boolean transfer(BankAccount destination, float amount, int pin) {
+        if (this.withdraw(amount, pin)) {
             return destination.deposit(amount);
         }
         return false;
