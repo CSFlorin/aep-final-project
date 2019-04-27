@@ -29,4 +29,13 @@ public class BankAccountTest {
         assertFalse(a.withdraw(101));
         assertEquals(100, a.getBalance());
     }
+
+    @Test
+    public void canTransfer() {
+        BankAccount a = new BankAccount(100);
+        BankAccount b = new BankAccount(100);
+        assertTrue(a.transfer(b, 50));
+        assertEquals(50, a.getBalance());
+        assertEquals(150, b.getBalance());
+    }
 }

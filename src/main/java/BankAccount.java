@@ -21,4 +21,11 @@ public class BankAccount {
         this.balance -= amount;
         return true;
     }
+
+    public boolean transfer(BankAccount destination, int amount) {
+        if (this.withdraw(amount)) {
+            return destination.deposit(amount);
+        }
+        return false;
+    }
 }
