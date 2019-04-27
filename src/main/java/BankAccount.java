@@ -1,14 +1,14 @@
-// understands balance of a user
+// understands balance of a single account
 public class BankAccount {
 
-    int balance;
+    private float balance;
 
-    BankAccount(int initialDeposit) {
-        this.balance = 0;
+    BankAccount(float initialDeposit) {
+        this.balance = 0f;
         this.deposit(initialDeposit);
     }
 
-    public boolean deposit(int amount) {
+    public boolean deposit(float amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount to deposit must be at least 0");
         }
@@ -16,11 +16,11 @@ public class BankAccount {
         return true;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return this.balance;
     }
 
-    public boolean withdraw(int amount) {
+    public boolean withdraw(float amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount to withdraw must be at least 0");
         }
@@ -29,10 +29,11 @@ public class BankAccount {
         return true;
     }
 
-    public boolean transfer(BankAccount destination, int amount) {
+    public boolean transfer(BankAccount destination, float amount) {
         if (this.withdraw(amount)) {
             return destination.deposit(amount);
         }
         return false;
     }
+
 }
