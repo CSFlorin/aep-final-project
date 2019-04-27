@@ -4,15 +4,19 @@ public class BankAccount {
     int balance;
 
     BankAccount(int initialDeposit) {
-        this.balance = initialDeposit;
+        this.balance = 0;
+        this.deposit(initialDeposit);
     }
 
-    boolean deposit(int amount) {
+    public boolean deposit(int amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount to deposit must be at least 0");
+        }
         this.balance += amount;
         return true;
     }
 
-    int getBalance() {
+    public int getBalance() {
         return this.balance;
     }
 

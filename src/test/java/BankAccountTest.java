@@ -47,4 +47,9 @@ public class BankAccountTest {
         assertEquals(100, a.getBalance());
         assertEquals(100, b.getBalance());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void cannotDeposit() {
+        BankAccount a = new BankAccount(-100);
+    }
 }
