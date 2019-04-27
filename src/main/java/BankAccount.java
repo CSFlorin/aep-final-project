@@ -21,6 +21,9 @@ public class BankAccount {
     }
 
     public boolean withdraw(int amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount to withdraw must be at least 0");
+        }
         if (this.balance < amount) return false;
         this.balance -= amount;
         return true;

@@ -24,7 +24,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void cannotWithdraw() {
+    public void cannotOverdraw() {
         BankAccount a = new BankAccount(100);
         assertFalse(a.withdraw(101));
         assertEquals(100, a.getBalance());
@@ -40,7 +40,7 @@ public class BankAccountTest {
     }
 
     @Test
-    public void cannotTransfer() {
+    public void cannotTransferMoreThanBalance() {
         BankAccount a = new BankAccount(100);
         BankAccount b = new BankAccount(100);
         assertFalse(a.transfer(b, 101));
@@ -49,7 +49,7 @@ public class BankAccountTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void cannotDeposit() {
+    public void cannotDepositNegativeAmount() {
         BankAccount a = new BankAccount(-100);
     }
 }
