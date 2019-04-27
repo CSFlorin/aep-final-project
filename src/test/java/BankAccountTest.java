@@ -7,6 +7,9 @@ public class BankAccountTest {
     int jezPin = 1234;
     User jez = new User("jez", jezPin);
 
+    int florinPin = 5678;
+    User florin = new User("florin", florinPin);
+
     @Test
     public void canCreateBankAccount() {
         BankAccount a = new BankAccount(0f, jez);
@@ -66,6 +69,19 @@ public class BankAccountTest {
     public void cannotGetBalanceWithInvalidPin() {
         BankAccount a = new BankAccount(100f, jez);
         a.getBalance(1235);
+    }
+
+    @Test
+    public void jezCannotWithdrawFromFlorinsAccount() {
+        BankAccount a = new BankAccount(100f, jez);
+        BankAccount b = new BankAccount(100f, florin);
+        try {
+            b.withdraw(10f, jezPin);
+            fail("Jez allowed to withdraw");
+        } catch (RuntimeException e) {
+            assertEquals(100f, b.getBalance(florinPin), 0f);
+            assertEquals(100f, a.getBalance(jezPin), 0f);
+        }
     }
 
 //    @Test
