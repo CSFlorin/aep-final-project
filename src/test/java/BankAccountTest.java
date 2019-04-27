@@ -16,4 +16,11 @@ public class BankAccountTest {
         assertTrue(a.deposit(10));
         assertEquals(10, a.getBalance());
     }
+
+    @Test
+    public void canWithdraw() {
+        BankAccount a = new BankAccount(100);
+        assertTrue(a.withdraw(10));
+        assertEquals(90, a.getBalance());
+    }
 }

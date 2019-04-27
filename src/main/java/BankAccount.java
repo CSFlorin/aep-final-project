@@ -15,4 +15,10 @@ public class BankAccount {
     int getBalance() {
         return this.balance;
     }
+
+    public boolean withdraw(int amount) {
+        assert(this.balance >= amount);
+        this.balance -= amount;
+        return true;
+    }
 }
