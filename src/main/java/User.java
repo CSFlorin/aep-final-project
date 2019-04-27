@@ -1,9 +1,8 @@
+// understands a user's identity
 public class User {
-    private String id;
     private int pin;
 
-    User(String id, int pin) {
-        this.id = id;
+    public User(int pin) {
         this.pin = pin;
     }
 
