@@ -114,4 +114,11 @@ public class BankAccountTest {
         a.withdraw(oneEuro, jezPin);
         assertEquals(ninetyEightPointEightyEightDollars, a.getBalance(jezPin));
     }
+
+    @Test
+    public void oneEuroEqualsOnePointTwelveDollars() {
+        CurrencyQuantity oneEuro = new CurrencyQuantity(1f, Currency.EURO);
+        CurrencyQuantity onePointTwelveDollars = new CurrencyQuantity(1.12f, Currency.DOLLAR);
+        assertEquals(oneEuro, onePointTwelveDollars);
+    }
 }
