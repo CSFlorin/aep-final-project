@@ -121,4 +121,9 @@ public class BankAccountTest {
         CurrencyQuantity onePointTwelveDollars = new CurrencyQuantity(1.12f, Currency.DOLLAR);
         assertEquals(oneEuro, onePointTwelveDollars);
     }
+
+    @Test
+    public void shouldFail() {
+        fail();
+    }
 }
