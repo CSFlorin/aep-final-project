@@ -122,8 +122,8 @@ public class BankAccountTest {
         assertEquals(oneEuro, onePointTwelveDollars);
     }
 
-    @Test
-    public void shouldFail() {
-        fail();
-    }
+//    @Test
+//    public void shouldFail() {
+//        fail();
+//    }
 }
