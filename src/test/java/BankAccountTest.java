@@ -45,61 +45,63 @@ public class BankAccountTest {
         assertFalse(a.withdraw(elevenDollars, jezPin));
         assertEquals(tenDollars, a.getBalance(jezPin));
     }
-//
-//    @Test
-//    public void jezCanTransferToAnotherOfHisAccounts() {
-//        BankAccount a = new BankAccount(100f, jez);
-//        BankAccount b = new BankAccount(100f, jez);
-//        assertTrue(a.transfer(b, 50f, jezPin));
-//        assertEquals(50f, a.getBalance(jezPin), 0f);
-//        assertEquals(150f, b.getBalance(jezPin), 0f);
-//    }
-//
-//    @Test
-//    public void cannotTransferMoreThanBalance() {
-//        BankAccount a = new BankAccount(100f, jez);
-//        BankAccount b = new BankAccount(100f, jez);
-//        assertFalse(a.transfer(b, 101f, jezPin));
-//        assertEquals(100f, a.getBalance(jezPin), 0f);
-//        assertEquals(100f, b.getBalance(jezPin), 0f);
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void cannotDepositNegativeAmount() {
-//        BankAccount a = new BankAccount(-100f, jez);
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void cannotWithdrawNegativeAmount() {
-//        BankAccount a = new BankAccount(0f, jez);
-//        a.withdraw(-100f, jezPin);
-//    }
-//
-//    @Test(expected = RuntimeException.class)
-//    public void cannotGetBalanceWithInvalidPin() {
-//        BankAccount a = new BankAccount(100f, jez);
-//        a.getBalance(1235);
-//    }
-//
-//    @Test
-//    public void jezCannotWithdrawFromFlorinsAccount() {
-//        BankAccount a = new BankAccount(100f, jez);
-//        BankAccount b = new BankAccount(100f, florin);
-//        try {
-//            b.withdraw(10f, jezPin);
-//            fail("Jez allowed to withdraw");
-//        } catch (RuntimeException e) {
-//            assertEquals(100f, b.getBalance(florinPin), 0f);
-//            assertEquals(100f, a.getBalance(jezPin), 0f);
-//        }
-//    }
 
-//    @Test
-//    public void canMergeAccounts() {
-//        BankAccount a = new BankAccount(100);
-//        BankAccount b = new BankAccount(100);
-//        assertTrue(a.merge(b));
-//        assertEquals(100, a.getBalance());
-//        assertEquals(100, b.getBalance());
-//    }
+    @Test
+    public void jezCanTransferToAnotherOfHisAccounts() {
+        CurrencyQuantity oneHundredDollars = new CurrencyQuantity(100f, Currency.DOLLAR);
+        CurrencyQuantity fiftyDollars = new CurrencyQuantity(50f, Currency.DOLLAR);
+        CurrencyQuantity oneHundredFiftyDollars = new CurrencyQuantity(150f, Currency.DOLLAR);
+        BankAccount a = new BankAccount(oneHundredDollars, jez);
+        BankAccount b = new BankAccount(oneHundredDollars, jez);
+        assertTrue(a.transfer(b, fiftyDollars, jezPin));
+        assertEquals(fiftyDollars, a.getBalance(jezPin));
+        assertEquals(oneHundredFiftyDollars, b.getBalance(jezPin));
+    }
+
+    @Test
+    public void cannotTransferMoreThanBalance() {
+        CurrencyQuantity oneHundredDollars = new CurrencyQuantity(100f, Currency.DOLLAR);
+        CurrencyQuantity oneHundredOneDollars = new CurrencyQuantity(101f, Currency.DOLLAR);
+        BankAccount a = new BankAccount(oneHundredDollars, jez);
+        BankAccount b = new BankAccount(oneHundredDollars, jez);
+        assertFalse(a.transfer(b, oneHundredOneDollars, jezPin));
+        assertEquals(oneHundredDollars, a.getBalance(jezPin));
+        assertEquals(oneHundredDollars, b.getBalance(jezPin));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void cannotDepositNegativeAmount() {
+        CurrencyQuantity negativeOneHundredDollars = new CurrencyQuantity(-100f, Currency.DOLLAR);
+        BankAccount a = new BankAccount(negativeOneHundredDollars, jez);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void cannotWithdrawNegativeAmount() {
+        CurrencyQuantity zeroDollars = new CurrencyQuantity(0f, Currency.DOLLAR);
+        CurrencyQuantity negativeOneHundredDollars = new CurrencyQuantity(-100f, Currency.DOLLAR);
+        BankAccount a = new BankAccount(zeroDollars, jez);
+        a.withdraw(negativeOneHundredDollars, jezPin);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void cannotGetBalanceWithInvalidPin() {
+        CurrencyQuantity oneHundredDollars = new CurrencyQuantity(100f, Currency.DOLLAR);
+        BankAccount a = new BankAccount(oneHundredDollars, jez);
+        a.getBalance(1235);
+    }
+
+    @Test
+    public void jezCannotWithdrawFromFlorinsAccount() {
+        CurrencyQuantity oneHundredDollars = new CurrencyQuantity(100f, Currency.DOLLAR);
+        CurrencyQuantity tenDollars = new CurrencyQuantity(10f, Currency.DOLLAR);
+        BankAccount a = new BankAccount(oneHundredDollars, jez);
+        BankAccount b = new BankAccount(oneHundredDollars, florin);
+        try {
+            b.withdraw(tenDollars, jezPin);
+            fail("Jez allowed to withdraw");
+        } catch (RuntimeException e) {
+            assertEquals(oneHundredDollars, b.getBalance(florinPin));
+            assertEquals(oneHundredDollars, a.getBalance(jezPin));
+        }
+    }
 }

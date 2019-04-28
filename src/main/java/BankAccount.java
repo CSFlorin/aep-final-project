@@ -40,11 +40,11 @@ public class BankAccount {
         }
     }
 
-//    public boolean transfer(BankAccount destination, float amount, int pin) {
-//        if (this.withdraw(amount, pin)) {
-//            return destination.deposit(amount);
-//        }
-//        return false;
-//    }
+    public boolean transfer(BankAccount destination, CurrencyQuantity amount, int pin) {
+        if (this.withdraw(amount, pin)) {
+            return destination.deposit(amount);
+        }
+        return false;
+    }
 
 }
