@@ -1,4 +1,4 @@
-// understands balance of a single account
+// understands balance of an account
 public class BankAccount {
 
     private CurrencyQuantity balance;

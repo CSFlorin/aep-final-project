@@ -12,7 +12,7 @@ public enum Currency {
     }
 
     float convertTo(Currency currency, float amount) {
-        return amount * inBaseUnits / currency.inBaseUnits;
+        return amount * this.inBaseUnits / currency.inBaseUnits;
     }
 
     @Override
